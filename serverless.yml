@@ -2,12 +2,10 @@ org: pahamihali4
 app: post-test-app
 service: post-test
 
-
 provider:
   name: aws
   runtime: python3.8
   region: eu-central-1
-
 
 functions:
   post_test:
@@ -17,34 +15,34 @@ functions:
         http:
           path: post_test
           method: post
-          authorizer: aws_iam
-          documentation:
-            summary: "Get URL load duration"
-            description: "Get URL load duration"
-            tags:
-              - "post-test-dev"
-              - "arn:aws:cloudformation:eu-central-1:102080805428:stack/post-test-dev/e95218a0-db11-11ea-93a0-06a85d409ac4"
-              - "PostUnderscoretestLambdaFunction"
-              - "dev"
-            requestBody:
-              description: "The list of urls"
-            requestHeaders:
-              -
-                name: "x-header"
-                description: "Header description"
-              -
-                name: "Authorization"
-                description: "Auth API key"
-            methodResponses:
-              -
-                statusCode: "200"
-                responseBody:
-                  description: "The json which contains URLs as keys and duration as value"
+          # authorizer: aws_iam
+          # documentation:
+          #   summary: "Get URL load duration"
+          #   description: "Get URL load duration"
+          #   tags:
+          #     - "post-test-dev"
+          #     - "arn:aws:cloudformation:eu-central-1:102080805428:stack/post-test-dev/e95218a0-db11-11ea-93a0-06a85d409ac4"
+          #     - "PostUnderscoretestLambdaFunction"
+          #     - "dev"
+          #   requestBody:
+          #     description: "The list of urls"
+          #   requestHeaders:
+          #     -
+          #       name: "x-header"
+          #       description: "Header description"
+          #     -
+          #       name: "Authorization"
+          #       description: "Auth API key"
+          #   methodResponses:
+          #     -
+          #       statusCode: "200"
+          #       responseBody:
+          #         description: "The json which contains URLs as keys and duration as value"
 
 
           
-plugins:
-  - serverless-aws-documentation
+# plugins:
+#   - serverless-aws-documentation
 package:
   exclude:
     - node_modules/**
@@ -56,28 +54,28 @@ package:
     - package-lock.json
     - requirements.txt
 
-custom:
-  documentation:
-    version: "1"
-    title: "dev-post-test	"
-    summary: "Get URL load duration"
-    description: "Get URL load duration"
-    tags:
-      - "post-test-dev"
-      - "arn:aws:cloudformation:eu-central-1:102080805428:stack/post-test-dev/e95218a0-db11-11ea-93a0-06a85d409ac4"
-      - "PostUnderscoretestLambdaFunction"
-      - "dev"
-    requestBody:
-      description: "The list of urls"
-    requestHeaders:
-      -
-        name: "x-header"
-        description: "Header description"
-      -
-        name: "Authorization"
-        description: "Auth API key"
-    methodResponses:
-      -
-        statusCode: "200"
-        responseBody:
-          description: "The json which contains URLs as keys and duration as value"
+# custom:
+#   documentation:
+#     version: "1"
+#title: "dev-post-test	"
+#     summary: "Get URL load duration"
+#     description: "Get URL load duration"
+#     tags:
+#       - "post-test-dev"
+#       - "arn:aws:cloudformation:eu-central-1:102080805428:stack/post-test-dev/e95218a0-db11-11ea-93a0-06a85d409ac4"
+#       - "PostUnderscoretestLambdaFunction"
+#       - "dev"
+#     requestBody:
+#       description: "The list of urls"
+#     requestHeaders:
+#       -
+#         name: "x-header"
+#         description: "Header description"
+#       -
+#         name: "Authorization"
+#         description: "Auth API key"
+#     methodResponses:
+#       -
+#         statusCode: "200"
+#         responseBody:
+#           description: "The json which contains URLs as keys and duration as value"

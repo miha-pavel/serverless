@@ -17,6 +17,7 @@ var/
 .installed.cfg
 *.egg
 package-lock.json
+br.py
 
 # Serverless directories
 .serverless
