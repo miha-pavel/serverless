@@ -2,10 +2,18 @@ org: pahamihali4
 app: post-test-app
 service: post-test
 
+plugins:
+  - serverless-aws-documentation
+
 provider:
   name: aws
   runtime: python3.8
   region: eu-central-1
+
+custom:
+  wsgi:
+    app: handler.post_test
+    packRequirements: false
 
 functions:
   post_test:

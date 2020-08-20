@@ -1,6 +1,6 @@
-import json
-import time
-import urllib
+from json import loads, dumps
+from time import time
+from urllib import request
 from threading import Thread
 
 
@@ -34,13 +34,13 @@ queue = Queue()
 
 
 def get_duration(url):
-    start = time.time()
-    urllib.request.urlopen(url)
-    queue.enque(time.time() - start)
+    start = time()
+    request.urlopen(url)
+    queue.enque(time() - start)
 
 
 def post_test(event, context):
-    urls = event
+    urls = loads(event["body"])
     durations = {}
     for url in urls:
         t = Thread(target=get_duration, args=(url, ))
@@ -48,8 +48,9 @@ def post_test(event, context):
         t.join()
         duration = queue.dequeue()
         durations[url] = duration
+    response_body = dumps(durations)
     response = {
         "statusCode": 200,
-        "body": json.dumps(durations)
+        "body": response_body
     }
     return response
