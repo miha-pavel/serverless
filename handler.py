@@ -34,9 +34,13 @@ queue = Queue()
 
 
 def get_duration(url):
-    start = time()
-    request.urlopen(url)
-    queue.enque(time() - start)
+    try:
+        start = time()
+        request.urlopen(url)
+        result = time() - start
+    except:
+        result = "Not found"
+    queue.enque(result)
 
 
 def post_test(event, context):
