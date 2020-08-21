@@ -52,7 +52,7 @@ def post_test(event, context):
     durations = {}
     response = {
         "statusCode": 400,
-        "body": {"message": "The urls list is empty"}
+        "body": {"message": "The list of urls is empty"}
     }
     if urls:
         for url in urls:
