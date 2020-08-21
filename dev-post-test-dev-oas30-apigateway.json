@@ -1,0 +1,107 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "dev-post-test",
+    "description": "There is the urls list in the body. The python handler check the duration of url loading",
+    "contact": {
+      "name": "Pavlo Mykhalichenko",
+      "email": "pahamihali4@gmail.com"
+    },
+    "version": "2020-08-21T07:15:46Z"
+  },
+  "servers": [
+    {
+      "url": "https://a1clrae0ng.execute-api.eu-central-1.amazonaws.com/{basePath}",
+      "variables": {
+        "basePath": {
+          "default": "/dev"
+        }
+      }
+    }
+  ],
+  "paths": {
+    "/post_test": {
+      "post": {
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "x-amazon-apigateway-integration": {
+          "uri": "arn:aws:apigateway:eu-central-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-central-1:102080805428:function:post-test-dev-post_test/invocations",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "POST",
+          "type": "aws_proxy"
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "api_key": {
+        "type": "apiKey",
+        "name": "x-api-key",
+        "in": "header"
+      }
+    }
+  },
+  "x-amazon-apigateway-documentation": {
+    "version": "2",
+    "createdDate": "2020-08-21T07:26:37Z",
+    "documentationParts": [
+      {
+        "location": {
+          "type": "API"
+        },
+        "properties": {
+          "info": {
+            "version": "1",
+            "title": "dev-post-test",
+            "summary": "POST request load url duration",
+            "description": "There is the urls list in the body. The python handler check the duration of url loading",
+            "contact": {
+              "name": "Pavlo Mykhalichenko",
+              "email": "pahamihali4@gmail.com"
+            }
+          }
+        }
+      },
+      {
+        "location": {
+          "type": "AUTHORIZER",
+          "name": "MyCustomAuthorizer"
+        },
+        "properties": {
+          "description": "Authorization via x-api-key"
+        }
+      },
+      {
+        "location": {
+          "type": "MODEL",
+          "name": "Duration"
+        },
+        "properties": {
+          "description": "Get url load duration"
+        }
+      },
+      {
+        "location": {
+          "type": "MODEL",
+          "name": "ErrorBadRequestResponse"
+        },
+        "properties": {
+          "description": "The request body has an empty list of urls"
+        }
+      },
+      {
+        "location": {
+          "type": "MODEL",
+          "name": "ErrorNotFoundResponse"
+        },
+        "properties": {
+          "description": "The current url was not found"
+        }
+      }
+    ]
+  }
+}

@@ -45,7 +45,7 @@ custom:
         version: "1"
         title: "dev-post-test"
         summary: "POST request load url duration"
-        description: "There is the urls list in the body. THe python handler check the duration of url loading"
+        description: "There is the urls list in the body. The python handler check the duration of url loading"
         contact:
           name: "Pavlo Mykhalichenko"
           email: "pahamihali4@gmail.com"

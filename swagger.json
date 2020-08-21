@@ -1,0 +1,32 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "There is the urls list in the body. The python handler check the duration of url loading",
+    "version" : "2020-08-21T07:15:46Z",
+    "title" : "dev-post-test",
+    "contact" : {
+      "name" : "Pavlo Mykhalichenko",
+      "email" : "pahamihali4@gmail.com"
+    }
+  },
+  "host" : "a1clrae0ng.execute-api.eu-central-1.amazonaws.com",
+  "basePath" : "/dev",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/post_test" : {
+      "post" : {
+        "responses" : { },
+        "security" : [ {
+          "api_key" : [ ]
+        } ]
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "api_key" : {
+      "type" : "apiKey",
+      "name" : "x-api-key",
+      "in" : "header"
+    }
+  }
+}
