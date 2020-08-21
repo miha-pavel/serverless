@@ -43,12 +43,25 @@ custom:
     api:
       info:
         version: "1"
-        title: "POST request load url duration"
-        summary: "Get URL load duration"
-        description: "Get URL load duration"
+        title: "dev-post-test"
+        summary: "POST request load url duration"
+        description: "There is the urls list in the body. THe python handler check the duration of url loading"
         contact:
           name: "Pavlo Mykhalichenko"
           email: "pahamihali4@gmail.com"
+    models:
+      -
+        name: "Duration"
+        description: "Get url load duration"
+        contentType: "application/json"
+      -
+        name: "ErrorBadRequestResponse"
+        description: "The request body has an empty list of urls"
+        contentType: "application/json"
+      -
+        name: "ErrorNotFoundResponse"
+        description: "The current url was not found"
+        contentType: "application/json"
     tags:
       - "post-test-dev"
       - "arn:aws:cloudformation:eu-central-1:102080805428:stack/post-test-dev/e95218a0-db11-11ea-93a0-06a85d409ac4"
@@ -63,12 +76,24 @@ custom:
     requestHeaders:
       -
         name: "x-header"
-        description: "Header description"
+        description: "Post request header with x-api-key"
       -
         name: "Authorization"
-        description: "Auth API key"
+        description: "Use API key (x-api-key) for user authorization"
+    requestModels:
+      "application/json": "Duration"
     methodResponses:
       -
         statusCode: "200"
         responseBody:
           description: "The json which contains URLs as keys and duration as value"
+        responseModels:
+          "application/json": "Duration"
+      -
+        statusCode: "400"
+        responseModels:
+          "application/json": "ErrorBadRequestResponse"
+      -
+        statusCode: "404"
+        responseModels:
+          "application/json": "ErrorNotFoundResponse"

@@ -39,22 +39,31 @@ def get_duration(url):
         request.urlopen(url)
         result = time() - start
     except:
-        result = "Not found"
+        message = f"The {url} was not found"
+        result = {
+            "statusCode": 404,
+            "message": message
+        }
     queue.enque(result)
 
 
 def post_test(event, context):
     urls = loads(event["body"])
     durations = {}
-    for url in urls:
-        t = Thread(target=get_duration, args=(url, ))
-        t.start()
-        t.join()
-        duration = queue.dequeue()
-        durations[url] = duration
-    response_body = dumps(durations)
     response = {
-        "statusCode": 200,
-        "body": response_body
+        "statusCode": 400,
+        "body": {"message": "The urls list is empty"}
     }
+    if urls:
+        for url in urls:
+            t = Thread(target=get_duration, args=(url, ))
+            t.start()
+            t.join()
+            duration = queue.dequeue()
+            durations[url] = duration
+        response_body = dumps(durations)
+        response = {
+            "statusCode": 200,
+            "body": response_body
+        }
     return response
